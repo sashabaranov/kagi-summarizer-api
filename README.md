@@ -26,7 +26,14 @@ import (
 func main() {
 	ctx := context.Background()
 	url := "your url"
-	fmt.Println(kagi.GetSummary(ctx, url))
+	summary, err := kagi.GetSummary(ctx, url)
+	if err != nil {
+		fmt.Println("Error: ", err)
+		return
+	}
+	fmt.Println("Sumarry: ", summary.Summary)
+	
+	// Also:
 	fmt.Println(kagi.GetTakeAways(ctx, url))
 }
 
