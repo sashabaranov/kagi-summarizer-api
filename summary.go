@@ -2,6 +2,7 @@ package kagi
 
 import (
 	"context"
+	"html"
 	"net/http"
 	"time"
 )
@@ -33,6 +34,7 @@ func GetSummary(ctx context.Context, url string) (response SummaryResponse, err 
 		}
 
 		if response.Status == "completed" {
+			response.Summary = html.UnescapeString(response.Summary)
 			return
 		}
 
