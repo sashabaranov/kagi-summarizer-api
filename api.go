@@ -66,10 +66,3 @@ func sendRequest(req *http.Request, v interface{}) (err error) {
 	err = json.NewDecoder(resp.Body).Decode(&v)
 	return
 }
-
-// func main() {
-// 	ctx := context.Background()
-// 	url := "https://carper.ai/diff-models-a-new-way-to-edit-code/"
-// 	fmt.Println(GetSummary(ctx, url))
-// 	fmt.Println(GetTakeAways(ctx, url))
-// }
