@@ -46,8 +46,9 @@ type SummaryData struct {
 }
 
 type SummaryResponse struct {
-	Meta ResponseMeta `json:"meta"`
-	Data SummaryData  `json:"data"`
+	Meta   ResponseMeta `json:"meta"`
+	Data   SummaryData  `json:"data"`
+	Errors []APIError   `json:"error"`
 }
 
 func (r SummaryRequest) validate() error {
