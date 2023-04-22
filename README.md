@@ -1,6 +1,6 @@
 # kagi-summarizer-api
 
-[![GoDoc](http://img.shields.io/badge/GoDoc-Reference-blue.svg)](https://godoc.org/github.com/sashabaranov/kagi-summarizer-api)
+[![Go Reference](https://pkg.go.dev/badge/github.com/sashabaranov/kagi-summarizer-api.svg)](https://pkg.go.dev/github.com/sashabaranov/kagi-summarizer-api)
 [![Go Report Card](https://goreportcard.com/badge/github.com/sashabaranov/go-gpt3)](https://goreportcard.com/report/github.com/sashabaranov/kagi-summarizer-api)
 
 
@@ -24,17 +24,21 @@ import (
 )
 
 func main() {
-	ctx := context.Background()
-	url := "your url"
-	summary, err := kagi.GetSummary(ctx, url)
+	client := kagi.NewClient("your kagi token")
+	response, err := client.Summarize(
+		context.Background(),
+		SummaryRequest{
+			URL:         "your url",
+			SummaryType: SummaryTypeSummary,
+			Engine:      SummaryEngineAgnes,
+			Cache:       true,
+		},
+	)
 	if err != nil {
 		fmt.Println("Error: ", err)
 		return
 	}
-	fmt.Println("Sumarry: ", summary.Summary)
-	
-	// Also:
-	fmt.Println(kagi.GetTakeAways(ctx, url))
+	fmt.Println("Sumarry: ", response.Data.Output)
 }
 
 ```
